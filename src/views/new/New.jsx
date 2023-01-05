@@ -5,6 +5,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./styles.css";
+
 const NewBlogPost = (props) => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
