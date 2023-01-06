@@ -1,10 +1,10 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import BlogAuthor from "../blog-author/BlogAuthor";
 import "./styles.css";
 const BlogItem = (props) => {
-  const { title, cover, author, id } = props;
+  const { title, category, cover, author, id } = props;
   return (
     <Link to={`/blogposts/${id}`} className="blog-link">
       <Card className="blog-card">
@@ -14,6 +14,7 @@ const BlogItem = (props) => {
         </Card.Body>
         <Card.Footer>
           <BlogAuthor {...author} />
+          <span class="badge rounded-pill bg-dark">{category}</span>
         </Card.Footer>
       </Card>
     </Link>
