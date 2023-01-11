@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Badge } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import BlogAuthor from "../blog-author/BlogAuthor";
 import "./styles.css";

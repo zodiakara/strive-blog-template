@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Image } from "react-bootstrap";
+import { Container, Image, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import BlogAuthor from "../../components/blog/blog-author/BlogAuthor";
 import BlogLike from "../../components/likes/BlogLike";
@@ -10,11 +10,12 @@ const Blog = () => {
 
   const params = useParams();
   const { id } = params;
+  const apiUrl = process.env.REACT_APP_BE_URL;
   //const navigate = useNavigate();
 
   const fetchPost = async () => {
     try {
-      let response = await fetch(`http://localhost:3001/blogposts/${id}`);
+      let response = await fetch(`${apiUrl}/blogposts/${id}`);
       if (response.ok) {
         let data = await response.json();
         console.log(data);
@@ -29,7 +30,7 @@ const Blog = () => {
 
   useEffect(() => {
     fetchPost();
-  }, []);
+  }, [id]);
 
   return (
     <div className="blog-details-root">
@@ -44,13 +45,6 @@ const Blog = () => {
           <div className="blog-details-info">
             <div>{blog.createdAt}</div>
             {/* <div>{`${blog.readTime.value} ${blog.readTime.unit} read`}</div> */}
-            <div
-              style={{
-                marginTop: 20,
-              }}
-            >
-              <BlogLike defaultLikes={["123"]} onChange={console.log} />
-            </div>
           </div>
         </div>
 
@@ -59,6 +53,19 @@ const Blog = () => {
             __html: blog.content,
           }}
         ></div>
+        <div
+          className="d-flex my-2"
+          style={{
+            marginTop: 20,
+          }}
+        >
+          <BlogLike defaultLikes={["123"]} onChange={console.log} />
+          <Button className="blog-details-btn">
+            <a href={`${apiUrl}/blogposts/${blog.id}/pdf`}>
+              Print this article
+            </a>
+          </Button>
+        </div>
       </Container>
     </div>
   );

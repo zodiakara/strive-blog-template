@@ -6,10 +6,11 @@ import BlogItem from "../blog-item/BlogItem";
 
 const BlogList = () => {
   const [blogpost, setBlogPosts] = useState([]);
+  const apiUrl = process.env.REACT_APP_BE_URL;
 
   const fetchPosts = async () => {
     try {
-      let response = await fetch("http://localhost:3001/blogposts");
+      let response = await fetch(`${apiUrl}/blogposts`);
       if (response.ok) {
         let data = await response.json();
         setBlogPosts(data);
